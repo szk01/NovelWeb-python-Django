@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ charpter_detail.charpter_name}} {% endblock %}
+{% block header_extends%}
+<link rel="stylesheet" type="text/css" href="{% static 'charpter_detail.css'%}"> 
+{%endblock%}
+
+{%block content%}
+
+	<div class="charpter_name">
+		{{charpter_detail.charpter_name}}
+	</div>
+
+	<div class="charpter_detail">
+		{{charpter_detail.charpter_content|linebreaksbr}}
+	</div>
+
+{%endblock%}

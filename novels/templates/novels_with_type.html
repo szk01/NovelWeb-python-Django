@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header_extends%}
+<link rel="stylesheet" type="text/css" href="{% static 'novels_with_type.css'%}"> 
+{%endblock%}
+
+{% block title%}{{ novel_type.type_name }}{% endblock%}
+
+{%block content%}
+     <!-- 小说列表 -->
+	<div class="novel_list">
+		{% for novel in page_of_novels %}
+			<ul class="novel">
+				<li class="Name"><a href="{% url 'charpter_contents' novel.pk%}">《{{novel.novel_name}}》</a></li>
+				<li class="Auth">{{novel.author}}</li>
+				<li>{{novel.status}}</li>
+			</ul>
+		{% empty %}
+			<p>还未上传更新，敬请期待</p>>
+		{% endfor %}
+	</div>
+
+	<div id="page">
+		<ul class="pagination">
+			<li> <!-- 按钮，左右换页 -->
+				{% if page_of_novels.has_previous %}
+				<a href="?page={{page_of_novels.previous_page_number}}">上一页</a>
+				{% endif%}
+			</li>
+			<li class="blank-block"></li>
+			<li> 第{{current_page}}/{{page_sum}}页</li>
+			<li class="blank-block"></li>
+			<li> <!-- 按钮，左右换页 -->
+				{% if page_of_novels.has_next %}
+				<a href="?page={{page_of_novels.next_page_number}}">下一页</a>
+				{% endif%}
+			</li>
+		</ul>
+	</div>
+
+	<div id="page_num-form">
+		<form role="search" method="get" id="searchchform" >
+			跳转到
+			<input type="text" size="4" maxlength="4" onkeydown="if (event.keyCode==13) {key=3;window.location='?page='+this.value;return false}">
+			 页
+		</form>
+	</div>
+
+{%endblock%}

@@ -1,0 +1,24 @@
+div.contents{
+	text-align: center;
+}
+
+ul.charpter li{
+	display: inline-block;
+    list-style: none;
+    width: 400px;
+    height: 30px;
+}
+
+a{
+	text-decoration: none;
+}
+
+
+ul.novel_info li{
+	list-style: none;
+	display: inline-block;
+}
+
+li._blank{
+	width: 30px;
+}

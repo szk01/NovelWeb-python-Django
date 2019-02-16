@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block header_extends%}
+<link rel="stylesheet" type="text/css" href="{% static 'index.css'%}"> 
+{%endblock%}
+
+{% block title%}搜索结果{% endblock%}
+
+{%block content%}
+	<div class="novel_list">
+		{% for novel in results %}
+			<ul class="novel">
+				<li class="Name"><a href="{% url 'charpter_contents' novel.pk%}">《{{novel.novel_name}}》</a></li>
+				<li class="Auth">{{novel.author}}</li>
+				<li>{{novel.status}}</li>
+			</ul>
+		{% empty %}
+			<p>抱歉，没有找到此小说</p>
+		{% endfor %}
+	</div>
+{%endblock%}

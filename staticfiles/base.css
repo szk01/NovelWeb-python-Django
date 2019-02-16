@@ -1,0 +1,55 @@
+div#content{
+	width: 860px;
+	margin:0px auto;   #上下为0，左右自动水平居中
+    
+}
+
+div.Header{
+	BACKGROUND:#511F90;
+	Color:#FFF;
+	Line-HEIGHT:32px;
+	font-size:14px;
+	width: 880px;
+	margin-right: : 50px;
+
+}
+
+div.Header A{
+	text-decoration: None;
+	color:#FFF;   #白色
+	font-size:14px;
+}
+
+div.Header A:hover{   
+	text-decoration: None;
+	color:#f00;   #红色
+	font-size:14px;
+}
+
+ul.novel_types li{
+	text-decoration: none;
+	display: inline-block;
+}
+
+li.novel_type{
+	width: 68px;
+}
+
+ul.novel_types{
+	margin-block-start: 0px;
+}
+
+body{
+	margin-top: 0px;
+	overflow-x: hidden;
+}
+
+div.blank_block{
+	height: 25px;
+}
+
+div#header-search-header{
+	height: 26px;
+	position: relative;
+	left: 650px;
+}

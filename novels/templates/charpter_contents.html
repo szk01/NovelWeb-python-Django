@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ novel.novel_name}} {% endblock %}
+{% block header_extends%}
+<link rel="stylesheet" type="text/css" href="{% static 'charpter_contents.css'%}"> 
+{%endblock%}
+
+{%block content%}
+	<div class="novel">
+		<ul class="novel_info">
+			<li class="novel_name">《{{ novel.novel_name }}》</li>
+			<li class="_blank"></li>
+			<li class="novel_auth">作者：{{ novel.author }}</li>
+			<li class="_blank"></li>
+			<li class="read_num">阅读数：{{ novel.read_num }}</li>
+		</ul>
+	</div>
+	<div class="contents">
+			<ul class="charpter">
+				{% for charpter in charpter_contents %}
+				<li class="Name"><a href="{% url 'charpter_detail' charpter.pk%}">{{charpter.charpter_name}}</a></li>
+				{% empty %}
+			<p>还未上传更新，敬请期待</p>
+				{% endfor %}
+			</ul>
+		
+	</div>
+{%endblock%}

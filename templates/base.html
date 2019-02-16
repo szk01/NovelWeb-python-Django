@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>{% block title%}{% endblock%}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    {% block header_extends%} {%endblock%}
+</head>
+<body>
+<div class="content-color">  <!-- #专门用来第三页的颜色布局的div -->
+
+    <div id="content">
+        <!-- 查找 -->
+        <div id="header-search-header">
+            <form role="search" method="get" id="searchchform" action="{% url 'search'%}">
+                {% csrf_token %}
+                <input type="search" name="q" placeholder="请输入小说名" required>
+                <button type="submit">搜索</button> 
+            </form> 
+        </div>
+
+        <div class="Header" >
+            <ul class="novel_types">
+                <li class="index"><a href="{% url 'home'%}">首页</a>|</li>
+            {% for novel_type in novel_types %}
+                <li class="novel_type"><a href="{% url 'novels_with_type' novel_type.pk %}">{{novel_type.type_name}}</a></li> 
+            {% empty %}
+                <p>分类没找到！</p>
+            {% endfor %}
+            </ul>
+        </div>
+            
+        {#主体内容#}
+        {% block content %} {% endblock %}
+    </div>
+    
+</div>
+
+
+
+    
+</body>
+</html>

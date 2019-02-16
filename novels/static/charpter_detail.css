@@ -1,0 +1,23 @@
+body{
+	background-color: #999;   #灰色
+}
+
+div.content-color{
+	width: 960px;
+	margin: 0px auto;
+	background-color: #C7EDCC;  #护眼色
+}
+
+div.charpter_detail{
+	line-height: 35px;
+	width: 800px;
+	margin:0px auto;
+	text-align: left;
+}
+
+
+div.charpter_name{
+	text-align: center;
+	line-height: 40px;
+}
+

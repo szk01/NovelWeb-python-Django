@@ -1,0 +1,44 @@
+ul.novel li{
+    display: inline-block;
+    list-style: none;
+}
+
+ul.novel{
+	line-height: 30px;
+	padding: 0px;
+	margin: 0px;
+	border-bottom: #F5A89A 1px dashed;
+	width: 850px;
+}
+
+a{
+	text-decoration: none;
+}
+
+li.Name{
+	width:500px;
+}
+
+li.Auth{
+	width: 200px;
+}
+
+ul.pagination li{
+	display: inline-block;
+    list-style: none;
+}
+
+li.blank-block{
+	width: 25px;
+}
+
+
+div#page{
+	position: relative;
+	left: 550px;
+}
+
+div#page_num-form{
+	position: relative;
+	left: 690px;
+}
