@@ -1,2 +1,2 @@
 # NovelWeb-python-Django
-开发自己的小说网站
+使用python编写的自定义爬虫在小说网站爬取数据，并存储到MYSQL数据库中，用Django将这些数据开发自己的小说网站
