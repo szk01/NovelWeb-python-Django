@@ -1,15 +1,15 @@
 # NovelWeb-python-Django
 
-### 一.首先来看看目标网站
+### 首先来看看目标网站
       （图片1）小说信息
       （图片2）小说目录
       （图片3）小说详情页
-      这个网站所需要爬取的数据都是用js技术动态渲染的页面，所以可以选择selenium来模拟浏览器来爬取数据。
+      这个网站所有需要爬取的数据都是用js技术动态渲染的页面，所以可以选择selenium来模拟浏览器来爬取数据。
 
-### 二.用到的技术：
+### 用到的技术：
    框架：Django<br> 数据库：MYSQL<br> 自定义爬虫：装饰器，多线程，selenium库<br>
    
-### 二.内在逻辑
+### 内在逻辑
    一般来说，小说的页面有三种，小说的分类，小说章节，小说具体内容，还有小说的分类。对应于Django的model层，有四种。
 
 小说分类 
@@ -62,7 +62,7 @@ class NovelInfo(models.Model):
 ```
 
 ### 爬虫逻辑。目标网站主要有三种页面，那么就写三个爬虫，在实际爬取的过程中，遇到了各种不同的问题，也用到了不同的技术来解决。
-   1.爬取小说相关信息,相关代码位于function/spider/spider_novel_info.py.（下面代码只是小部分代码）
+   1.爬取小说相关信息,相关代码位于function/spider/spider_novel_info.py.（下面代码只是小部分代码）<br>
       根据目标网站的情况，需要实现翻页功能，根据selenium库的方法，根据情况具体编写的实现功能
      
  ```python
@@ -81,7 +81,7 @@ class NovelInfo(models.Model):
     except TimeoutError as e:
         print(e)
 ```
-   2.爬取小说的章节信息，相关代码位于function/spider/spider_charpter_info.py.
+   2.爬取小说的章节信息，相关代码位于function/spider/spider_charpter_info.py.<br>
      为了提高爬取的速度，可以使用selenium的显示等待方式（以下是部分代码）
 ```python
      def click_href(url):
@@ -99,9 +99,9 @@ class NovelInfo(models.Model):
         html = click_href(url)
         return html
  ```
-    3.爬取小说的具体章节，这是数据最多的一部分，也是最难得一部分。
-      由于数据太多，在爬取的过程中，由于网络不佳或其他原因使得一个页面总是无法加载出来，在用显示等待的过程中超时而抛出异常，导致整个程序无法运行，因此在有必要时跳过这个爬取，进行下一个页面的爬取。
-      解决方法：使用python的装饰器以及多进程来实现规定某函数的运行时间，超时后程序也不会抛出异常。
+   3.爬取小说的具体章节,这是最难得一部分。
+      由于数据太多，在爬取的过程中，由于网络不佳或其他原因使得一个页面总是无法加载出来，在用显示等待的过程中超时而抛出异常，导致整个程序无法运行，因此在有必要时跳过这个爬取，进行下一个页面的爬取。<br>
+      解决方法：使用python的装饰器以及多进程来实现规定某函数的运行时间，超时后程序也不会抛出异常，并且可以请求下一个页面。
 ```python
 #装饰器，给get_one_cahrpter_content(url)函数新增功能
 def time_limited_pri(time_limited):
@@ -143,7 +143,60 @@ def get_one_charpter_content(url):
         content = get_one_charpter_content(url)
         return content
 ```
-    
+
+###数据库MYSQL以及根据相关字段实现的更新功能。
+    数据库的表结构以及爬取的数据图片。
+    <图片4>
+    <图片5>
+    由于使用的不是Django自带的数据库，那么就要使用pymysql来将爬取的数据插入到数据库中。(三个爬虫都有相关的代码，这里的是其中的一个，测试代码test也有)
+    ```python
+import pymysql
+
+#连接到spiders数据库
+con = pymysql.connect(host='localhost',
+                      user='xxxx',
+                      password='xxxxx',
+                      port=xxx,db='xxxx'
+                      )
+cursor = con.cursor()
+
+#查询语句,查询novel的id(查询指定字段)
+sql = 'SELECT * FROM charpter'
+
+cursor.execute(sql) #result是共有多少条结果
+
+result = cursor.fetchall() #数据类型是元组,可迭代类型数据
+
+print(result)
+```
+
+      更新功能，由于有的小说处于连载中，或者过段时间会下架。因此需要经常更新。具体代码位于NovelWeb-python-Django/function/update。以下只是截取的  片段<br>
+     大致思路是，在表中加入时间字段，以及has_spiderde字段来什么时候确定爬取的数据，章节名对应的数据是否爬取。如果有对比数据库后发现不存在数据，则删除数据
+     
+  ```python
+  #比较两者，更新字段
+def compare_two_list(charpter,charpter_detail):
+    for charpter_id in charpter:
+        if charpter_id in charpter_detail:
+            try:
+                sql = "UPDATE charpter SET has_spidered=%s WHERE charpter_id=%s"
+                cursor.execute(sql,(1,charpter_id))
+                con.commit()
+                print(charpter_id+'的has_spidered章节已经爬取')
+            except Exception as e:
+                print('更新失败',e)
+                con.rollback()
+        else:
+            try:
+                sql = "UPDATE charpter SET has_spidered=%s WHERE charpter_id=%s"
+                cursor.execute(sql, (0, charpter_id))
+                con.commit()
+                print(charpter_id + '的has_spidered章节没有爬取')
+            except Exception as e:
+                print('更新失败', e)
+                con.rollback()
+```
+  
 
 
 
