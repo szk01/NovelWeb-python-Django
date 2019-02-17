@@ -143,9 +143,8 @@ def get_one_charpter_content(url):
         content = get_one_charpter_content(url)
         return content
 ```
-
-###数据库MYSQL以及根据相关字段实现的更新功能。
-    1.数据库的表结构以及爬取的数据图片。
+### 数据库MYSQL以及根据相关字段实现的更新功能。
+  1.数据库的表结构以及爬取的数据图片。
     <图片4>
     <图片5>
     由于使用的不是Django自带的数据库，那么就要使用pymysql来将爬取的数据插入到数据库中。(三个爬虫都有相关的代码，这里的是其中的一个，测试代码test也有)
@@ -194,7 +193,7 @@ def compare_two_list(charpter,charpter_detail):
                 con.rollback()
 ```
 
-###自己的网站就做好了
+### 自己的网站就做好了
    在完善Django的其他部分后，也可以加入一些搜索功能，分页功能，甚至第三方登录功能后。自己的网站就做好了。
    <图片6>
    <图片7>
