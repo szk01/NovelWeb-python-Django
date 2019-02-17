@@ -158,7 +158,10 @@ def get_one_charpter_content(url):
   ![](https://raw.githubusercontent.com/szk01/img/master/MYSQL-table.png)
      其中一张表的信息
   ![](https://raw.githubusercontent.com/szk01/img/master/dateBase.png)
-    由于使用的不是Django自带的数据库，那么就要使用pymysql来将爬取的数据插入到数据库中。(下面的代码是如何连接到MYSQL数据的，在test文件中也有相关代码)
+  
+  
+  
+  由于使用MYSQL的不是Django自带的数据库，那么就要使用pymysql来将爬取的数据插入到数据库中。(下面的代码是如何连接到MYSQL数据的，在test文件中也有相关代码)
 ```python
 import pymysql
 
