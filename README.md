@@ -62,10 +62,10 @@ class NovelInfo(models.Model):
 ```
 
 ### 爬虫逻辑。目标网站主要有三种页面，那么就写三个爬虫，在实际爬取的过程中，遇到了各种不同的问题，也用到了不同的技术来解决。
-    1.爬取小说相关信息,相关代码位于function/spider/spider_novel_info.py.（下面代码只是小部分代码）
+   1.爬取小说相关信息,相关代码位于function/spider/spider_novel_info.py.（下面代码只是小部分代码）
       根据目标网站的情况，需要实现翻页功能，根据selenium库的方法，根据情况具体编写的实现功能
      
-    ```python
+ ```python
     def get_next_page(num):
     url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=2&cat_id=25'    #科幻小说6/5
     browser.get(url)
@@ -83,7 +83,7 @@ class NovelInfo(models.Model):
 ```
    2.爬取小说的章节信息，相关代码位于function/spider/spider_charpter_info.py.
      为了提高爬取的速度，可以使用selenium的显示等待方式（以下是部分代码）
-     ```python
+```python
      def click_href(url):
     try:
         browser.get(url)
@@ -98,12 +98,11 @@ class NovelInfo(models.Model):
     except:
         html = click_href(url)
         return html
-    ```
+ ```
     3.爬取小说的具体章节，这是数据最多的一部分，也是最难得一部分。
       由于数据太多，在爬取的过程中，由于网络不佳或其他原因使得一个页面总是无法加载出来，在用显示等待的过程中超时而抛出异常，导致整个程序无法运行，因此在有必要时跳过这个爬取，进行下一个页面的爬取。
       解决方法：使用python的装饰器以及多进程来实现规定某函数的运行时间，超时后程序也不会抛出异常。
-      ```python
-      
+```python
 #装饰器，给get_one_cahrpter_content(url)函数新增功能
 def time_limited_pri(time_limited):
     def wrapper(func):  #接收的参数是函数
