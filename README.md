@@ -1,7 +1,7 @@
 # NovelWeb-python-Django
 
 ### 首先来看看目标网站
-      （图片1）小说信息
+      ![](https://raw.githubusercontent.com/szk01/img/master/%E7%9B%AE%E6%A0%87%E7%BD%91%E7%AB%99%E5%B0%8F%E8%AF%B4%E4%BF%A1%E6%81%AF%E9%A1%B5.png)
       （图片2）小说目录
       （图片3）小说详情页
    这个网站所有需要爬取的数据都是用js技术动态渲染的页面，无法直接爬取，可以选择selenium来模拟浏览器来爬取数据。
