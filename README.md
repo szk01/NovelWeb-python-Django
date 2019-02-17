@@ -143,11 +143,12 @@ def get_one_charpter_content(url):
         content = get_one_charpter_content(url)
         return content
 ```
+4.我总共爬取了8k+本小说，但是只要想爬，就能爬取天涯网的所有免费小说章节。
 ### 数据库MYSQL以及根据相关字段实现的更新功能。
   1.数据库的表结构以及爬取的数据图片。
     <图片4>
     <图片5>
-    由于使用的不是Django自带的数据库，那么就要使用pymysql来将爬取的数据插入到数据库中。(三个爬虫都有相关的代码，这里的是其中的一个，测试代码test也有)
+    由于使用的不是Django自带的数据库，那么就要使用pymysql来将爬取的数据插入到数据库中。(下面的代码是如何连接到MYSQL数据的，在test文件中也有相关代码)
 ```python
 import pymysql
 
@@ -167,7 +168,7 @@ result = cursor.fetchall() #数据类型是元组,可迭代类型数据
 
 print(result)
  ```
-   2.更新功能，由于有的小说处于连载中，或者过段时间会下架。因此需要经常更新。具体代码位于NovelWeb-python-Django/function/update。<br>大致思路是，在表中加入时间字段，以及has_spiderde字段来什么时候确定爬取的数据，章节名对应的数据是否爬取。如果有对比数据库后发现不存在数据，则删除数据.
+   2.更新功能，由于有的小说处于连载中，或者过段时间会下架。因此需要经常更新。下面的代码只是一小部分，具体代码位于NovelWeb-python-Django/function/update。<br>大致思路是，检查这本小说是否需要更新，然后根据在表中的字段，以及has_spiderde字段来什么时候确定爬取的数据，章节名对应的数据是否爬取。如果有对比数据库后发现不存在数据，则删除数据.
    
   ```python
   #比较两者，更新字段
@@ -194,7 +195,7 @@ def compare_two_list(charpter,charpter_detail):
 ```
 
 ### 最后网站就完成了
-   在完善Django的其他部分后，也可以加入一些搜索功能，分页功能，甚至第三方登录功能后。自己的网站就做好了。
+   在完善Django的其他部分后，也可以加入一些搜索功能，分页功能，第三方登录功能后。这个是属于Django的方面，并不难，稍微研究一下就知道了。最后网站就做好了。
    <图片6>
    <图片7>
    <图片8>
