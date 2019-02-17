@@ -1,11 +1,14 @@
 # NovelWeb-python-Django
 
 ### 首先来看看目标网站
+小说信息
 ![](https://raw.githubusercontent.com/szk01/img/master/novelWeb-novelInfo.png)
-![]()
-      （图片2）小说目录
-      （图片3）小说详情页
-   这个网站所有需要爬取的数据都是用js技术动态渲染的页面，无法直接爬取，可以选择selenium来模拟浏览器来爬取数据。
+小说目录
+![](https://raw.githubusercontent.com/szk01/img/master/novelWeb-charpter.png)
+小说详情
+![](https://raw.githubusercontent.com/szk01/img/master/novelWeb-content.png)
+
+   #####这个网站所有需要爬取的数据都是用js技术动态渲染的页面，无法直接爬取，可以选择selenium来模拟浏览器来爬取数据。
 
 ### 用到的技术：
    框架：Django<br> 数据库：MYSQL<br> 自定义爬虫：装饰器，多线程，selenium，pymysql,pyquery库<br>
