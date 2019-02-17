@@ -12,7 +12,8 @@
 ### 二.内在逻辑
    一般来说，小说的页面有三种，小说的大体信息，小说章节，小说具体内容，还有小说的分类。对应于Django的model层，有四种。
    
- ···python
+```python
+ 
  class Category(models.Model):
     id = models.CharField(primary_key=True, max_length=255)
     type_name = models.CharField(max_length=255)
@@ -21,7 +22,7 @@
         managed = False
         db_table = 'category'
 
-···
+```
 class Charpter(models.Model):
     charpter_id = models.CharField(primary_key=True, max_length=255)
     charpter_name = models.CharField(max_length=255)
