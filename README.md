@@ -1,2 +1,3 @@
 # NovelWeb-python-Django
-##1.用到的技术<br> 框架：Django，数据库：MYSQL,
+### 一.用到的技术：
+   框架：Django<br>数据库：MYSQL<br>爬虫：装饰器，多线程<br>
