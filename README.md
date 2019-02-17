@@ -7,7 +7,7 @@
    这个网站所有需要爬取的数据都是用js技术动态渲染的页面，无法直接爬取，可以选择selenium来模拟浏览器来爬取数据。
 
 ### 用到的技术：
-   框架：Django<br> 数据库：MYSQL<br> 自定义爬虫：装饰器，多线程，selenium，库<br>
+   框架：Django<br> 数据库：MYSQL<br> 自定义爬虫：装饰器，多线程，selenium，pymysql,pyquery库<br>
    
 ### 内在逻辑
    一般来说，小说的页面有三种，小说的分类，小说章节，小说具体内容，还有小说的分类。对应于Django的model层，有四种。
