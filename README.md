@@ -67,16 +67,6 @@ class NovelInfo(models.Model):
      
     ```python
     def get_next_page(num):
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=2&cat_id=6' #现代都市11/37
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=2&cat_id=7'  #灵异悬疑31/101
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=1&cat_id=1'   #现代言情31/118
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=2&cat_id=8'    #职场官场28/27
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=1&cat_id=5'    #浪漫青春28/74
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=1&cat_id=2'    #古代言情15/14
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=1&cat_id=4'      #女生悬疑6/5
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=2&cat_id=10'    #历史军事 31/62
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=2&cat_id=9'     #奇幻玄幻  31/111
-    # url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=2&cat_id=24'    #武侠仙侠31/63
     url = 'https://book.tianya.cn/html2/allbooks-cat.aspx?cat_bigid=2&cat_id=25'    #科幻小说6/5
     browser.get(url)
     try:
