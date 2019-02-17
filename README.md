@@ -11,7 +11,8 @@
    
 ### 二.内在逻辑
    一般来说，小说的页面有三种，小说的分类，小说章节，小说具体内容，还有小说的分类。对应于Django的model层，有四种。
-  小说分类 
+
+小说分类 
 ```python
  
  class Category(models.Model):
