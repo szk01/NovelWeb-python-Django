@@ -1,6 +1,6 @@
 # NovelWeb-python-Django
 
-### 首先来看看目标网站
+### 首先来看看目标网站https://book.tianya.cn/
 小说信息
 ![](https://raw.githubusercontent.com/szk01/img/master/novelWeb-novelInfo.png)
 
