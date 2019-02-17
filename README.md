@@ -10,8 +10,8 @@
    框架：Django<br> 数据库：MYSQL<br> 自定义爬虫：装饰器，多线程，selenium库<br>
    
 ### 二.内在逻辑
-   一般来说，小说的页面有三种，小说的大体信息，小说章节，小说具体内容，还有小说的分类。对应于Django的model层，有四种。
-   
+   一般来说，小说的页面有三种，小说的分类，小说章节，小说具体内容，还有小说的分类。对应于Django的model层，有四种。
+  小说分类 
 ```python
  
  class Category(models.Model):
@@ -23,6 +23,8 @@
         db_table = 'category'
 
 ```
+小说章节（即目录）
+```python
 class Charpter(models.Model):
     charpter_id = models.CharField(primary_key=True, max_length=255)
     charpter_name = models.CharField(max_length=255)
@@ -31,8 +33,9 @@ class Charpter(models.Model):
     class Meta:
         managed = False
         db_table = 'charpter'
-
-
+```
+具体内容
+```python
 class CharpterDetail(models.Model):
     charpter_id = models.CharField(primary_key=True, max_length=255)
     charpter_content = models.TextField()
@@ -41,8 +44,9 @@ class CharpterDetail(models.Model):
     class Meta:
         managed = False
         db_table = 'charpter_detail'
-
-
+```
+小说相关信息（小说名，作者，阅读数...）
+```python
 class NovelInfo(models.Model):
     novel_name = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
@@ -54,4 +58,4 @@ class NovelInfo(models.Model):
     class Meta:
         managed = False
         db_table = 'novel_info'
-  '''
+```
