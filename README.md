@@ -3,8 +3,12 @@
 ### 首先来看看目标网站
 小说信息
 ![](https://raw.githubusercontent.com/szk01/img/master/novelWeb-novelInfo.png)
+
+
 小说目录
 ![](https://raw.githubusercontent.com/szk01/img/master/novelWeb-charpter.png)
+
+
 小说详情
 ![](https://raw.githubusercontent.com/szk01/img/master/novelWeb-content.png)
 
@@ -150,8 +154,10 @@ def get_one_charpter_content(url):
 4.我总共爬取了8k+本小说，但是只要想爬，就能爬取天涯网的所有免费小说章节。
 ### 数据库MYSQL以及根据相关字段实现的更新功能。
   1.数据库的表结构以及爬取的数据图片。
-    <图片4>
-    <图片5>
+     表结构，用外键关联
+  ![](https://raw.githubusercontent.com/szk01/img/master/MYSQL-table.png)
+     其中一张表的信息
+  ![](https://raw.githubusercontent.com/szk01/img/master/dateBase.png)
     由于使用的不是Django自带的数据库，那么就要使用pymysql来将爬取的数据插入到数据库中。(下面的代码是如何连接到MYSQL数据的，在test文件中也有相关代码)
 ```python
 import pymysql
@@ -200,9 +206,14 @@ def compare_two_list(charpter,charpter_detail):
 
 ### 最后网站就完成了
    在完善Django的其他部分后，也可以加入一些搜索功能，分页功能，第三方登录功能后。这个是属于Django的方面，并不难，稍微研究一下就知道了。最后网站就做好了。
-   <图片6>
-   <图片7>
-   <图片8>
+  小说首页
+  ![](https://raw.githubusercontent.com/szk01/img/master/webShow.png)
+  
+  随便点击一本小说
+  ![](https://raw.githubusercontent.com/szk01/img/master/show2.png)
+ 
+ 小说详情页面
+ ![](https://raw.githubusercontent.com/szk01/img/master/show3.png)
 
 
 
