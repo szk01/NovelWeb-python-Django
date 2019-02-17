@@ -99,7 +99,7 @@ class NovelInfo(models.Model):
         html = click_href(url)
         return html
  ```
-   3.爬取小说的具体章节,这是最难得一部分。
+   3.爬取小说的具体章节,这是最难得一部分。相关代码位于function/spider/spider_charpter_content.py<br>
       由于数据太多，在爬取的过程中，由于网络不佳或其他原因使得一个页面总是无法加载出来，在用显示等待的过程中超时而抛出异常，导致整个程序无法运行，因此在有必要时跳过这个爬取，进行下一个页面的爬取。<br>
       解决方法：使用python的装饰器以及多进程来实现规定某函数的运行时间，超时后程序也不会抛出异常，并且可以请求下一个页面。
 ```python
@@ -145,11 +145,11 @@ def get_one_charpter_content(url):
 ```
 
 ###数据库MYSQL以及根据相关字段实现的更新功能。
-    数据库的表结构以及爬取的数据图片。
+    1.数据库的表结构以及爬取的数据图片。
     <图片4>
     <图片5>
     由于使用的不是Django自带的数据库，那么就要使用pymysql来将爬取的数据插入到数据库中。(三个爬虫都有相关的代码，这里的是其中的一个，测试代码test也有)
-    ```python
+```python
 import pymysql
 
 #连接到spiders数据库
@@ -159,7 +159,6 @@ con = pymysql.connect(host='localhost',
                       port=xxx,db='xxxx'
                       )
 cursor = con.cursor()
-
 #查询语句,查询novel的id(查询指定字段)
 sql = 'SELECT * FROM charpter'
 
@@ -168,11 +167,9 @@ cursor.execute(sql) #result是共有多少条结果
 result = cursor.fetchall() #数据类型是元组,可迭代类型数据
 
 print(result)
-```
-
-      更新功能，由于有的小说处于连载中，或者过段时间会下架。因此需要经常更新。具体代码位于NovelWeb-python-Django/function/update。以下只是截取的  片段<br>
-     大致思路是，在表中加入时间字段，以及has_spiderde字段来什么时候确定爬取的数据，章节名对应的数据是否爬取。如果有对比数据库后发现不存在数据，则删除数据
-     
+ ```
+   2.更新功能，由于有的小说处于连载中，或者过段时间会下架。因此需要经常更新。具体代码位于NovelWeb-python-Django/function/update。<br>大致思路是，在表中加入时间字段，以及has_spiderde字段来什么时候确定爬取的数据，章节名对应的数据是否爬取。如果有对比数据库后发现不存在数据，则删除数据.
+   
   ```python
   #比较两者，更新字段
 def compare_two_list(charpter,charpter_detail):
@@ -196,41 +193,12 @@ def compare_two_list(charpter,charpter_detail):
                 print('更新失败', e)
                 con.rollback()
 ```
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+###自己的网站就做好了
+   在完善Django的其他部分后，也可以加入一些搜索功能，分页功能，甚至第三方登录功能后。自己的网站就做好了。
+   <图片6>
+   <图片7>
+   <图片8>
 
 
 
