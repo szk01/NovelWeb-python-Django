@@ -1,4 +1,4 @@
-# NovelWeb-python-Django
+#Novelweb-python-Django
 
 ### 首先来看看目标网站https://book.tianya.cn/
 小说信息
